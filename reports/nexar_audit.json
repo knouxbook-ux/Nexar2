@@ -1,0 +1,2174 @@
+{
+  "generated_at": "2026-02-19T18:02:39.606701Z",
+  "total_files": 233,
+  "status_counts": {
+    "complete": 232,
+    "empty": 1
+  },
+  "files": [
+    {
+      "path": "INTEGRATION_GUIDE.md",
+      "status": "complete",
+      "checksum": "7eb94c08d7d12d186636f422a3a33ed542c0256fb3226a92a9108f34d98dc85d",
+      "size": 4908,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": []
+    },
+    {
+      "path": "metro.config.js",
+      "status": "complete",
+      "checksum": "2815fc07f7dc00566925b12e9e68b4a06c7ce7a907ee4829ec11f45f30ba5af7",
+      "size": 380,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "js",
+      "notes": []
+    },
+    {
+      "path": ".gitignore",
+      "status": "complete",
+      "checksum": "018fed2fd600e4103b5a3f41dc006a7f849ebf4de1cfe3467c68400069f62d54",
+      "size": 570,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "noext",
+      "notes": []
+    },
+    {
+      "path": "SETUP_GUIDE.md",
+      "status": "complete",
+      "checksum": "ff349b31c49bab082e018e11bdc5c174795ef9881f5473ea9935e8721a818b5c",
+      "size": 2307,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": []
+    },
+    {
+      "path": "package.json",
+      "status": "complete",
+      "checksum": "6957c619c28252db6b4140627cdd8ed6dbf31cd3d878f8c77782e79980f3cd5d",
+      "size": 3648,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "json",
+      "notes": []
+    },
+    {
+      "path": "nativewind-env.d.ts",
+      "status": "complete",
+      "checksum": "9295d7729f6ef2a022dea6b72315bdedd831be180ff86a2c32c51580bce8fe73",
+      "size": 205,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "eas.json",
+      "status": "complete",
+      "checksum": "61f125afbc5a55c603acfd8215cb72f0b7f3cf99b0f7b18dcbd9edb9adddce7a",
+      "size": 1038,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "json",
+      "notes": []
+    },
+    {
+      "path": "theme.config.js",
+      "status": "complete",
+      "checksum": "f6ebe5f2c50f206d130fd2a2e034e82709d9f5bbb0ce3932868c31ab708d1a93",
+      "size": 786,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "js",
+      "notes": []
+    },
+    {
+      "path": "tailwind.config.js",
+      "status": "complete",
+      "checksum": "257c0949766a0699e536eb7d18379a3c0bda37766e878271b06222f222544489",
+      "size": 882,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "js",
+      "notes": []
+    },
+    {
+      "path": "tsconfig.json",
+      "status": "complete",
+      "checksum": "aee7aa119328c486e5c5774bd49f11901e8abd6526d7bc82b02cc767e2d94cb4",
+      "size": 432,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "json",
+      "notes": []
+    },
+    {
+      "path": ".env.example",
+      "status": "complete",
+      "checksum": "1c4dd24dd803e9887804509ae9cda910a447ddada18e7dbd423fbebfb36cebda",
+      "size": 4360,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "example",
+      "notes": []
+    },
+    {
+      "path": "theme.config.d.ts",
+      "status": "complete",
+      "checksum": "13199594ee2c516b2a0b3adc1cd10f2b2c863b99f6ffb401c6b3d99b935cb9a4",
+      "size": 569,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "README_MERGED.md",
+      "status": "complete",
+      "checksum": "e0906a8d1e852d0e917a93d46d667b889f703db216f9252a6150c15e5b6eeb46",
+      "size": 3887,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": []
+    },
+    {
+      "path": "REBUILD_LOG.md",
+      "status": "complete",
+      "checksum": "af6a698a67e2d35cf2f62208599b57fe6b6e13addaea4e55dca12f04f92df823",
+      "size": 10487,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "BUILD_GUIDE.md",
+      "status": "complete",
+      "checksum": "d8f6c1d1cb9570126d07ecbf0522fa72ff552c1994c9d82981f7e5bd185fceb3",
+      "size": 4622,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": []
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "status": "complete",
+      "checksum": "16b935d1b8a38d083f0e90c03d7f064e28a48911b8c52839ec62435a51461255",
+      "size": 533439,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "yaml",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "todo.md",
+      "status": "complete",
+      "checksum": "c0e7569caaccb36b61ffcb1f5e5bf3b74ba89054262bea392809fdfa6eb99e23",
+      "size": 3048,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "md",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "MERGE_LOG.md",
+      "status": "complete",
+      "checksum": "bd874dd07da655cbb2f6cadad7666f61d733a0070a93c5cfcfca28ac84fa5ce9",
+      "size": 3322,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": []
+    },
+    {
+      "path": "drizzle.config.ts",
+      "status": "complete",
+      "checksum": "33c852beddbdaa83e7fd21c8a34e34e310be0bcba5788d884cd4373f6a30d388",
+      "size": 397,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "eslint.config.js",
+      "status": "complete",
+      "checksum": "0a16c7a62375d4756b81fbe44f37abf9e9b6969fac84e77c7021972a5a783c63",
+      "size": 228,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "js",
+      "notes": []
+    },
+    {
+      "path": "global.css",
+      "status": "complete",
+      "checksum": "70e9a0827e13a5a262aaa90ba2a7e3ae6edc2249f32f3cfdc9802257844d4151",
+      "size": 154,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "css",
+      "notes": []
+    },
+    {
+      "path": "README.md",
+      "status": "complete",
+      "checksum": "3d60dd1f138ae11b979d392d12ec13928ddbb2c375011c70ebcdb1621ab12a97",
+      "size": 12600,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": []
+    },
+    {
+      "path": "design.md",
+      "status": "complete",
+      "checksum": "586d7b63b70e5b000f4d8c8dea7dedd918b43b46f81b2bba941c817bda30ff0d",
+      "size": 6556,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "md",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "ANALYSIS_REPORT.md",
+      "status": "complete",
+      "checksum": "f6d64d62cca7c8b329f2745d77d7b8a009a0d279c62dccec76e7c2ab76d439fa",
+      "size": 11791,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "md",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app.config.ts",
+      "status": "complete",
+      "checksum": "0307f0c042cdf458c77c13f20916acbf118cb6fa27f095bd1eadfcb1e0751204",
+      "size": 2848,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "babel.config.js",
+      "status": "complete",
+      "checksum": "eb65280c4b785ba798ff5395b49f82e0a7408b15ab55eaf4cc24e46d3d5ff8e5",
+      "size": 248,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "js",
+      "notes": []
+    },
+    {
+      "path": "app/onboarding.tsx",
+      "status": "complete",
+      "checksum": "c590954bc734ba01a67e0c0ca17b3c3768cbc8a1354f460f0956e9f9e5773e6b",
+      "size": 6856,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/notifications.tsx",
+      "status": "complete",
+      "checksum": "4654aad477d15c297badcc68480723f44105558184560b28b4f413af7984ff82",
+      "size": 9799,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/_layout.tsx",
+      "status": "complete",
+      "checksum": "99294bdde0ef4516c104cc095229342864d655d440325d92686fd33eb4d7ba3c",
+      "size": 5153,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/search.tsx",
+      "status": "complete",
+      "checksum": "506f745d33f56a48d2777111fe3119d2bf037f982655092ed27cdeaebb3958d0",
+      "size": 13021,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/welcome.tsx",
+      "status": "complete",
+      "checksum": "3844ee8cdbc398650ec0fbc72e724e633298a859ac044cfc1c8a3665aa262731",
+      "size": 13096,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/profile.tsx",
+      "status": "complete",
+      "checksum": "f4697d85355d113953701b860a5b59e18e3f56b92364dcc981324dcf59038199",
+      "size": 11311,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/notifications-screen.tsx",
+      "status": "complete",
+      "checksum": "cae5a5ff902de438633931d8e3e8c47bca31ce585ae181f70e556284cc331f8e",
+      "size": 7919,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/premium.tsx",
+      "status": "complete",
+      "checksum": "34b2af81fdc39eaccd6cab798c138f726e57dc1ab9edf833d136d5b29bd18864",
+      "size": 13720,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/splash.tsx",
+      "status": "complete",
+      "checksum": "52e06c1ea73e360c324f1ae82f7f5106eebb83d68d7f118776363bb6ec53de9e",
+      "size": 11561,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/hero-launch.tsx",
+      "status": "complete",
+      "checksum": "9d59717b09388298c129aeb5ed59c820adc0d98a741a13c9d30e3c8127419bf7",
+      "size": 8491,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/about.tsx",
+      "status": "complete",
+      "checksum": "56671e98008b3fab80a93206e07825f7878d4fa27fea870dc2111be1b0b2318c",
+      "size": 10547,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/nexar-dashboard.tsx",
+      "status": "complete",
+      "checksum": "4106591c1be9b7d1533a77b6f4b97f777b68c43a5b482620e768df5060ddf932",
+      "size": 15812,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/face-retouching.tsx",
+      "status": "complete",
+      "checksum": "7d991f1fb33912942fff8124c3936927831b18156c7eb8d3df63ffcc8fa05495",
+      "size": 7327,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/ai-studio.tsx",
+      "status": "complete",
+      "checksum": "55a0d3b75f823b96f11fe3c8d99b13831deb1a79d5203266ca8f89f8b0af6fa3",
+      "size": 12904,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/admin-dashboard.tsx",
+      "status": "complete",
+      "checksum": "325744fed5e5238fc5dd3e84bc403f4fb6c6f7963f738590ee7c0d525bd0300d",
+      "size": 30438,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/multi-camera.tsx",
+      "status": "complete",
+      "checksum": "d4f0c1ac4e0b74c5ac278506e390fe870ca103ba70453bd5bc791acbfe9d9344",
+      "size": 12814,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/settings.tsx",
+      "status": "complete",
+      "checksum": "262654051a2c29bee078f867bb4a3c5e8a625e4b82505dc9dc948b0c7d325cff",
+      "size": 20024,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/video-editing.tsx",
+      "status": "complete",
+      "checksum": "54b1bdc211b0330def3a7850ba852ea45aabc6ec253b17b5d4637b03113f2619",
+      "size": 25529,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/effects.tsx",
+      "status": "complete",
+      "checksum": "898d6148b551752033e27b40b6fd46242bef3773866580998374a84d02178184",
+      "size": 14945,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/live-chat.tsx",
+      "status": "complete",
+      "checksum": "e0ed833e5a8ee4b470e8355fe47c76d142ac7515c76ea098d4e5e416eaa27a31",
+      "size": 33066,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/_layout.tsx",
+      "status": "complete",
+      "checksum": "68608a715e88adb8913e89b028695c67b39bea887159567178efb65177ca6c78",
+      "size": 5298,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/payment.tsx",
+      "status": "complete",
+      "checksum": "0843e3e290d6b55e84a15ad5d1b45b897f4a4b7f80ff96c2d0c88931d3ac591c",
+      "size": 11717,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/pro-services.tsx",
+      "status": "complete",
+      "checksum": "c289eb5ea80c4c478cfcebd00c26a391eccd96240143e3889727944ccccde3a8",
+      "size": 41243,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/referrals.tsx",
+      "status": "complete",
+      "checksum": "d4c25d0d140b041d8900fe7d6f76bf81e2bbf7fcbd8d36f0ef26db84bb3d5a81",
+      "size": 11959,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/audio-recording.tsx",
+      "status": "complete",
+      "checksum": "f3f5c3f8c6136837f2a5754e9033d363a5b0bd7a12602550b8721384155c3de5",
+      "size": 13975,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/audio-studio.tsx",
+      "status": "complete",
+      "checksum": "f3f5c3f8c6136837f2a5754e9033d363a5b0bd7a12602550b8721384155c3de5",
+      "size": 13975,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/index.tsx",
+      "status": "complete",
+      "checksum": "78c6be98a13b46044e880eb995c98d5df4833b9589f08468d6c534a7bd5984e6",
+      "size": 13090,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/customer-support.tsx",
+      "status": "complete",
+      "checksum": "534ab13ebf38bb36bdbc4c94517eeb9b0156e0a2e79871ef628f788d160239a8",
+      "size": 15603,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/subscriptions.tsx",
+      "status": "complete",
+      "checksum": "ce18aed6e26a28953f616ddc34b0ef11597b7ca0c6b42ca7345a47f97dad7a02",
+      "size": 13747,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/ratings-reviews.tsx",
+      "status": "complete",
+      "checksum": "be6b5fbc2fb85a4392d8d6960b08894fc3e1038da1b41332f26a83182b5cd176",
+      "size": 12451,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/advanced-recording.tsx",
+      "status": "complete",
+      "checksum": "67b586a5206dff7babe242c85b794c27fbc4947e3f1f6a596234bc303761c8f9",
+      "size": 14739,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/developer.tsx",
+      "status": "complete",
+      "checksum": "e3aa4009360dee120efe89efd7dcc3e0623475dc8c6893de23978b3acda55dc3",
+      "size": 19302,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/streaming.tsx",
+      "status": "complete",
+      "checksum": "7839e7162234d8c3bbc566bd69d6832d2f71d17f892bd66259395a481bbb2615",
+      "size": 13190,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/cloud-sync.tsx",
+      "status": "complete",
+      "checksum": "5a9375415b82cd0f24ba1de168068f65454a900903b12d402ad77d4dd991f212",
+      "size": 8802,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/editor-studio.tsx",
+      "status": "complete",
+      "checksum": "54b1bdc211b0330def3a7850ba852ea45aabc6ec253b17b5d4637b03113f2619",
+      "size": 25529,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/nexar-retouch.tsx",
+      "status": "complete",
+      "checksum": "6e13662487fe46c53a0c886894217318f0e40a39e7eb4d573fed5d3361da3288",
+      "size": 33757,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/ai-features.tsx",
+      "status": "complete",
+      "checksum": "55a0d3b75f823b96f11fe3c8d99b13831deb1a79d5203266ca8f89f8b0af6fa3",
+      "size": 12904,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/beauty-makeup.tsx",
+      "status": "complete",
+      "checksum": "8ebdc75275d68e726703a52a555e6d3d42906bd8cfa1ad16865afa6bde3b39a3",
+      "size": 17529,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/chat.tsx",
+      "status": "complete",
+      "checksum": "d701ec3923985c25826521eaca959c0e2c3a0dd37747f994ce67c7d65a389335",
+      "size": 13696,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/screen-recording.tsx",
+      "status": "complete",
+      "checksum": "8283c05913ba3728be887e034a689797a1bb21f2bb21ea4449d1af96ebbcc7c8",
+      "size": 20798,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/license-keys.tsx",
+      "status": "complete",
+      "checksum": "0f32886242dadfa451ae047ee50894ded00d23f7b68afcd935e9a1d4f8a56cda",
+      "size": 25633,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/gesture-control.tsx",
+      "status": "complete",
+      "checksum": "4e35c51f558d0ed9ab89adb2c7134c0debc784ed59c295b1c88c4c98c65d68c5",
+      "size": 13916,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/analytics.tsx",
+      "status": "complete",
+      "checksum": "861e59967944821114257248d9474bdb40a1bf7d96a00d11440a79193dfbdb8f",
+      "size": 10841,
+      "modified": "2026-02-19T18:01:05.317548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/multicam-studio.tsx",
+      "status": "complete",
+      "checksum": "d4f0c1ac4e0b74c5ac278506e390fe870ca103ba70453bd5bc791acbfe9d9344",
+      "size": 12814,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/notifications-advanced.tsx",
+      "status": "complete",
+      "checksum": "c1bf41a6164644602fc1150342ada73f14b7ae66fa179002977fef0876dcbe9e",
+      "size": 16033,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/import/VideoImporter.tsx",
+      "status": "complete",
+      "checksum": "df59387ad82c88dd95b5f5380852dbbed9243164ba54b21ac4f246acb242a128",
+      "size": 6024,
+      "modified": "2026-02-19T18:02:22.149049",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/import/BatchProcessor.ts",
+      "status": "complete",
+      "checksum": "a1143b40b02ea0663217ab4123279037cb9778ea7c69a745d5562bf6f5cd51be",
+      "size": 3307,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/MaskPanel.tsx",
+      "status": "complete",
+      "checksum": "deda55fe9eb6487438a75eb632f0f6ac92bc9ac0202cc5062ef251fd0e2a487d",
+      "size": 3870,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/LassoSelection.tsx",
+      "status": "complete",
+      "checksum": "32443e16fb8210c3c01c9387cfa94eb9134d6cb392dab98a16dd3f330454fe47",
+      "size": 1910,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/DragDropHandler.tsx",
+      "status": "complete",
+      "checksum": "f66f5ed4541f73a1b05d8a366bf06ed2c277be2503700a85ae5ac2d7dfe4edaa",
+      "size": 1269,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/AutoMaskAI.ts",
+      "status": "complete",
+      "checksum": "830acd655b91877f897cf7209d0f52b734790a2dedeed055735bf2642f03069e",
+      "size": 2538,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/PolygonSelection.tsx",
+      "status": "complete",
+      "checksum": "90623d5fdadf57c74d1ed7a496d189e25bb255590071f0d838b52bcff28d2089",
+      "size": 2154,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/MaskManager.ts",
+      "status": "complete",
+      "checksum": "5d2c7dfbcf692d4a887d577d4a7010e8a619ef0dc6914cafd4b064cc4c26ddd2",
+      "size": 2018,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/masks/ZoomControls.tsx",
+      "status": "complete",
+      "checksum": "e64f4cc90505fa4485972eb26ea64b4451731384d7623fc0df04f8c5e586dabe",
+      "size": 1987,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/presets/PresetPanel.tsx",
+      "status": "complete",
+      "checksum": "2e3c008b6c1db1e70c02805363acfe6ff1b42fa271c3f95aac0c1a60539cc7a6",
+      "size": 5224,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/presets/PresetManager.ts",
+      "status": "complete",
+      "checksum": "a5986f64305d29f02ab016655d6ba840da274bea3270fedddbb72df8a095d69d",
+      "size": 4048,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/layers/LayerPreset.ts",
+      "status": "complete",
+      "checksum": "829d25a26408184519bf99cecdf1dddf41b2e98d613c03473b3278f45e88d6db",
+      "size": 3461,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/layers/HistoryPanel.tsx",
+      "status": "complete",
+      "checksum": "138cd0b67b8605998268cddd11e10c8b4e7c38186bb0070c7ff4ce9d0c79019e",
+      "size": 3414,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/layers/LayerManager.ts",
+      "status": "complete",
+      "checksum": "4d5f5903b67cbd8de86bc5f6d723c09b41af527573528b3a426e60135068537b",
+      "size": 4377,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/layers/canvas/CanvasRenderer.tsx",
+      "status": "complete",
+      "checksum": "e2ce78f1e74aa9a56e326c052ec5042987919f5d8b30679f3cd8f4ee4d7484a5",
+      "size": 3864,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/layers/canvas/GestureControls.tsx",
+      "status": "complete",
+      "checksum": "3292d509fcf7a95b699af506f5d54c8de3d7cde1166c0e5fef079fc8e8ec05f6",
+      "size": 2268,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/adjustments/HairAdjustment.tsx",
+      "status": "complete",
+      "checksum": "087bcf0a8765c1f8a6cd72f39f2b48f7bb3849dc616cad52a589e8a50a4782c0",
+      "size": 4487,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/adjustments/VideoEnhancer.tsx",
+      "status": "complete",
+      "checksum": "bd00f39e054d18dae390b17520a9d3e4f0401c6a1fdff279c9cbc322b1373f2a",
+      "size": 6477,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/adjustments/EyeAdjustment.tsx",
+      "status": "complete",
+      "checksum": "2fde10778c9cb76dd939f23134afd5967e873d0a4e8cf0e32185ba8283b75a60",
+      "size": 3015,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/adjustments/FilterAdjustment.tsx",
+      "status": "complete",
+      "checksum": "6a7ec6f6f0192139623aa34755c0f07fa8b6127f7d9119c7320d9700937bf0f2",
+      "size": 5694,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/adjustments/LipAdjustment.tsx",
+      "status": "complete",
+      "checksum": "e4bbb1b8544497ee0176ed17e2c1652efc547758f24762eae3dc40f6f5a422dd",
+      "size": 4286,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/batch/BatchQueue.tsx",
+      "status": "complete",
+      "checksum": "820d0f81f8b1cc1064295b77c7c080d746f7598dbd222fc65066d115998297fe",
+      "size": 5424,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/(tabs)/retouch-engine/batch/BatchExport.ts",
+      "status": "complete",
+      "checksum": "76edac48aa8f7efd456e8a576b0bff6d7bf496431c124b5a21f94a38667d3f25",
+      "size": 3343,
+      "modified": "2026-02-19T18:01:05.321548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "app/dev/theme-lab.tsx",
+      "status": "complete",
+      "checksum": "10c1776d31aa059601a1d97787e7f49292932b1af2b70cce9ade5e2d052e52eb",
+      "size": 8934,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "app/oauth/callback.tsx",
+      "status": "complete",
+      "checksum": "322015f86f8e7652432f3a5cdebc7b16f23941a4cc3d5a2fae4cd55d5b9954c7",
+      "size": 10537,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "lib/theme-provider.tsx",
+      "status": "complete",
+      "checksum": "4637303ddc10c81e9d438fffcf0342cd7ebcc2a707229c7ee1f9c0f72d15acc9",
+      "size": 2657,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "lib/language-context.tsx",
+      "status": "complete",
+      "checksum": "b1139c831e0b23f25fd107b3e47a5b3d7c08b8e3313ce921c3f8c4cd49250661",
+      "size": 2193,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "lib/trpc.ts",
+      "status": "complete",
+      "checksum": "817f33877fc7105d881686a08e25d7e1e85aba88e79c1f2190acfa5654acb06b",
+      "size": 1383,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/utils.ts",
+      "status": "complete",
+      "checksum": "934aa60296def59d380064a38e96a7529fd7984cb2ddb35fcc51c5ae73af8a5a",
+      "size": 434,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/RetouchEngine.ts",
+      "status": "complete",
+      "checksum": "2d962b8fbe45832f31de81112b3be311986d3efc232c320559542fc635c071c2",
+      "size": 14160,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/nexar/index.ts",
+      "status": "complete",
+      "checksum": "4f2ec590ef0a34385302b7828068b4636826998b3dec6628a4b433383c23e05e",
+      "size": 1687,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/ServiceRegistry-COMPLETE.ts",
+      "status": "complete",
+      "checksum": "5d00c1ce40921bf0672d040bd0c3e2c5dd32c53ea19147fb9e1e2cf94a8a1a87",
+      "size": 13882,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/AdvancedServices-COMPLETE.ts",
+      "status": "complete",
+      "checksum": "7e30cd52c6ae9968b884eb9f491d3cad52134f5ee4f93ce8c8ba9d21e43be238",
+      "size": 6504,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/NexarCore.ts",
+      "status": "complete",
+      "checksum": "dd5d8b29af4bf8b4176cdb10932f3cc03ee79240cb181cce9f4bf9533282425d",
+      "size": 15737,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/ServiceRegistry.ts",
+      "status": "complete",
+      "checksum": "261f2d52e592c8ebac2948a3e0fd97a80959d32088551b012e32d1a08408c034",
+      "size": 13926,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/AdvancedServices.ts",
+      "status": "complete",
+      "checksum": "ca7386e04f544035e74553e62f4de8cefbcb8a987c2d477a68368427b0ae287a",
+      "size": 6548,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/NexarBridge.ts",
+      "status": "complete",
+      "checksum": "87e09e4fc3e7b80287f5a7d21a356ca6a66a3dfc381be52d19ac71e76bdfd0ca",
+      "size": 5231,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/nexar/RetouchEngine-COMPLETE.ts",
+      "status": "complete",
+      "checksum": "aa9aa01c667461f3b355e9bb65ad6387e544137336dcea3a6ff8be74f91ef27d",
+      "size": 14116,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/subscription-service-COMPLETE.ts",
+      "status": "complete",
+      "checksum": "34bf2a3be80fab0b6ddfe13910aebc599139f175bda6e97388c190e0911dee14",
+      "size": 19130,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/local-database-service.ts",
+      "status": "complete",
+      "checksum": "e2d08a2621e83ff4e4bd9fe44bedfb3eeefc6b5e906adb5496c0c84de1fc9175",
+      "size": 12195,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/live-chat-service.ts",
+      "status": "complete",
+      "checksum": "07ad7dfba9e556d831034323bf73682524747204d852f3e519786b3838743bbe",
+      "size": 14929,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/video-editing-service-FIXED.ts",
+      "status": "complete",
+      "checksum": "6f39f610b60d68a0e704bceb486d2c4e23971864ce91b390cb3755e691c654b5",
+      "size": 17697,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/admin-dashboard-service.ts",
+      "status": "complete",
+      "checksum": "8a2f2a8906851145ea220dd303f21fc8322c0153bf6d58e21f1f7373067bf98e",
+      "size": 10578,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/gesture-control-service.ts",
+      "status": "complete",
+      "checksum": "1786ef7bab1849c355ce9530c734ab71331e39aa915d98c7bdf158228ba2a830",
+      "size": 6342,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/streaming-service.ts",
+      "status": "complete",
+      "checksum": "6c801a20d08dd2c197f642a0245659a75fd029bb12fdecd974218d86dcf66434",
+      "size": 12055,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/camera-service.ts",
+      "status": "complete",
+      "checksum": "6ba1e738747e2ea8a5f1bd1ba00aabffc42e8600b04011b3114e2659dac5c40a",
+      "size": 3104,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/payment-service.ts",
+      "status": "complete",
+      "checksum": "a405e6865283c372efc0a5c2c651f00e58768fc04566af2d804cb1e4813c3cad",
+      "size": 13840,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/performance-monitor-service.ts",
+      "status": "complete",
+      "checksum": "d25f706bb14ae542d3116308f7c47bb18100a728f751e34b601f854f60a7d501",
+      "size": 9029,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/ratings-reviews-service.ts",
+      "status": "complete",
+      "checksum": "29400bd2760af39cb2b145258109b8f5bc98213cfd2d728e58999a9efada9c8b",
+      "size": 6315,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/screen-recording-service-FIXED.ts",
+      "status": "complete",
+      "checksum": "9b718820e24e1852fd3b2a960e9cb5a38ff6907a35f47c28f65586c1f027e6bc",
+      "size": 15844,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/cloud-sync-service.ts",
+      "status": "complete",
+      "checksum": "8718b1b5785982e0eda25648f4d6495d0e9ad95054522f2f47132c764192b78e",
+      "size": 9707,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/effects-service.ts",
+      "status": "complete",
+      "checksum": "5245924af901cca82de7970ba81f1d7e5da654a58d1593f7892f238f99ad1022",
+      "size": 9806,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/screen-recording-service.ts",
+      "status": "complete",
+      "checksum": "aecbcb81d76ca673c17e7cd1f06b03bcf7d0aae6bdc7471e4645596f01ae8cb7",
+      "size": 16966,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/subscription-service.ts",
+      "status": "complete",
+      "checksum": "124bea2ecd62888a8bd0bfb654274d66d31442783be22622d6e3e8d5fd673260",
+      "size": 22736,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/ai-service.ts",
+      "status": "complete",
+      "checksum": "2b0cfed75ac73633c8a4536c3e8270de0262d9733782976fdc38748df101fa2e",
+      "size": 20301,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/advanced-notifications-service.ts",
+      "status": "complete",
+      "checksum": "807f8b71ceac96074625c5ce736803de857b9ffe5e8ed8912c86937b7379a480",
+      "size": 10129,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/database-service.ts",
+      "status": "complete",
+      "checksum": "943326149ed39189787f5a68ad10592a2fd11cfcb4640d1bf841ae1d28a60874",
+      "size": 8037,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/cloud-storage-service.ts",
+      "status": "complete",
+      "checksum": "cc9b49671d46ada0bd285c14d61c85501d35d4fc4d1d7c5cfd962845c104d3db",
+      "size": 7531,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/ai-service-enhanced.ts",
+      "status": "complete",
+      "checksum": "4f6994a63dee45f48c37e2db0b29395318cb571a16b80b4710d55b6d69e3466f",
+      "size": 12877,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/notification-service.ts",
+      "status": "complete",
+      "checksum": "1a5afe1f8d0f893c06b585e02c2c35407017abdffd6d128e26d12885141369d1",
+      "size": 9284,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/streaming-service-enhanced.ts",
+      "status": "complete",
+      "checksum": "da6c2a2d3b3428bf289450e6d340ff7d6e71a4a78305846953a7d497b519bd93",
+      "size": 9521,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/advanced-face-retouching-service.ts",
+      "status": "complete",
+      "checksum": "2ce887ea37e85ec927ab058d7ccc44f914496b6a98cfad53f226f745e255973a",
+      "size": 6037,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/makeup-service.ts",
+      "status": "complete",
+      "checksum": "c92864fd780377daeac5363d75be482a3aa7489aec77213ad972650f1acc7116",
+      "size": 10911,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/security-service.ts",
+      "status": "complete",
+      "checksum": "f7d32f681ac4976fb1292c91d98a304f1bcc903e606160053414f0ff3c7e8149",
+      "size": 9363,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/referral-service.ts",
+      "status": "complete",
+      "checksum": "e3b5e3c04abe51ede2f77372e71f489865f06aff8e4dd447c0efd77facc82a90",
+      "size": 7118,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/video-editor-service-enhanced.ts",
+      "status": "complete",
+      "checksum": "e1b6ec5047084e3706cc1cac0e36957fb6ea7f9b22f16fefab017e96dbac42b6",
+      "size": 12112,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/firebase-service-FIXED.ts",
+      "status": "complete",
+      "checksum": "03b70dd91dd890a410a4d3b62a9f33634de605232218981bed96093c84c66f1f",
+      "size": 14767,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/body-retouching-service.ts",
+      "status": "complete",
+      "checksum": "5867b3da5139f3c719f7c90ed4608f47aae6cd43438e271c89c240469e8ecd80",
+      "size": 5144,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/face-retouching-service.ts",
+      "status": "complete",
+      "checksum": "1d52f32e159e80c1332f543e0949aa99bd486bae11e3d58a21fc543703b218f5",
+      "size": 11219,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/ai-service-ADVANCED.ts",
+      "status": "complete",
+      "checksum": "55b6ec19cfd4b4757f2a9367c9da403c804f7af217bdf3dc7ebad821248577d2",
+      "size": 17724,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/services/video-editing-service.ts",
+      "status": "complete",
+      "checksum": "8f5849ab51df91aeddd0d44dd1ee13415dee6b21dc5f3a543648c286bbe53c35",
+      "size": 17812,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/lottie-service.ts",
+      "status": "complete",
+      "checksum": "80f312ddcbeb7f27cc485142f5d739e9247941763cad18729ed349da9564ad1b",
+      "size": 10238,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/analytics-service.ts",
+      "status": "complete",
+      "checksum": "dc256efd03ed271c7b300ac9131f85ea28e3d11dffd574f8fa646c5d6d2227f9",
+      "size": 12302,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/audio-recording-service.ts",
+      "status": "complete",
+      "checksum": "fd00438e2a5e57a075fbbbe2d1e67fc7467d106cfb39dd6330fa924a3fdcb4a1",
+      "size": 11170,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/multi-camera-service.ts",
+      "status": "complete",
+      "checksum": "ed4a5912813afe25183a65d1552773848004a05ffa6320568486f91d6255ce61",
+      "size": 9968,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/services/firebase-service.ts",
+      "status": "complete",
+      "checksum": "e9c7a212a30c28d821d59c1d907a763639166c1017cb6d70bd69f5e6cf196227",
+      "size": 17369,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/i18n/fr.ts",
+      "status": "complete",
+      "checksum": "321e302921a7ab4a9cd493f823a8e8d3c5ccc410e6aa2593db8746598fefc8c7",
+      "size": 8214,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/i18n/index.ts",
+      "status": "complete",
+      "checksum": "09fea421486d03363f5da1d172d28bc53c77fc9f432169926b233df69b2e9904",
+      "size": 469,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/i18n/en.ts",
+      "status": "complete",
+      "checksum": "48bf40fe6ef15a435d09a8dcb035ced71de2b52f7a88c9bc336571e8c8f7fb62",
+      "size": 7510,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/i18n/ar.ts",
+      "status": "complete",
+      "checksum": "d9d79978e7abe23951edda846a5febe82f205d1136fb458921982486e266a384",
+      "size": 9806,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/i18n/translations-enhanced.ts",
+      "status": "complete",
+      "checksum": "91a9e1aeb51dfc14e27224f7190f9f9ca40460e44a237b097b0e6a8a90c6e241",
+      "size": 5591,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/i18n/__tests__/translations.test.ts",
+      "status": "complete",
+      "checksum": "be64f44b4fb2426bcce9322154e4e993d3dd1cd04c98ccd657e56a6b5510f125",
+      "size": 7436,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "lib/_core/auth.ts",
+      "status": "complete",
+      "checksum": "914544ccb695a107537a20900067290fe6f5789de8b1032847502a14ce1fa87f",
+      "size": 4081,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/_core/theme.ts",
+      "status": "complete",
+      "checksum": "1c52d5d2f92a2cd54b9ca98dfcb5738a96c82efeb9fd787a266f979cfa0431a3",
+      "size": 2476,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/_core/manus-runtime.ts",
+      "status": "complete",
+      "checksum": "69881b95e130ea21e3c5b1f1da1952e05a458b526fa8598e3b2a5de18aec7955",
+      "size": 3578,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/_core/api.ts",
+      "status": "complete",
+      "checksum": "e3f8682035b8d3d43dc67ea6ef85a3b542a31fcb86518b42b963bfaab44ec79d",
+      "size": 5764,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "lib/_core/nativewind-pressable.ts",
+      "status": "complete",
+      "checksum": "2f371708ef2f7369427dfb35159c2a1cae94d3e6e05e8654b0753642000d5a2f",
+      "size": 267,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "assets/images/android-icon-monochrome.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.329547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/developer-photo.jpg",
+      "status": "complete",
+      "checksum": "8b64128fa0483979e7037c5edbc0c86dd888563c807faf0f91f3e19f21dd7272",
+      "size": 157327,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "jpg",
+      "notes": []
+    },
+    {
+      "path": "assets/images/developer-profile.jpg",
+      "status": "complete",
+      "checksum": "8b64128fa0483979e7037c5edbc0c86dd888563c807faf0f91f3e19f21dd7272",
+      "size": 157327,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "jpg",
+      "notes": []
+    },
+    {
+      "path": "assets/images/favicon.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/splash-icon.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/react-logo@3x.png",
+      "status": "complete",
+      "checksum": "cd84e02a5d542a3e71b7fa10a685c1b9fb51db4aff92aca6c0da6461ce17be16",
+      "size": 21252,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/react-logo@2x.png",
+      "status": "complete",
+      "checksum": "fa600be9ad2f869c7a8dbaffc78bb15af741123e1319c948f0be51753a153cde",
+      "size": 14225,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/partial-react-logo.png",
+      "status": "complete",
+      "checksum": "015a72aeb24c1166243ebc185355c9488cc892fbf3aa82f9ae66819a10f3451c",
+      "size": 5075,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/android-icon-background.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.325547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/icon.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/react-logo.png",
+      "status": "complete",
+      "checksum": "224b7636b15e672801579b5b418077cbc2ca42f0146389062364356b0ecb5c5c",
+      "size": 6341,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/android-icon-foreground.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.329547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/nexar-pro-logo.png",
+      "status": "complete",
+      "checksum": "e9ebef909764211c07cc0fe339eff798496a2555704e861d197b18320b68cfda",
+      "size": 301644,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "assets/images/app-icon.png",
+      "status": "complete",
+      "checksum": "22ad6a5b2e020c8f58fcb0b7a1c971c7484150f9ab6e8f7901a1027ad361e6ca",
+      "size": 593191,
+      "modified": "2026-02-19T18:01:05.329547",
+      "type": "png",
+      "notes": []
+    },
+    {
+      "path": "components/themed-view.tsx",
+      "status": "complete",
+      "checksum": "05b0d4acdc5bae2d162c4603bac8a69b3542e222e4456fa2e4998113ad972de4",
+      "size": 505,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/external-link.tsx",
+      "status": "complete",
+      "checksum": "a94fb18191a3837717c7bb480ec3145350ed19823c7553e241f1c4b4d558d50f",
+      "size": 838,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/animated-text.tsx",
+      "status": "complete",
+      "checksum": "69f1d9a0e880a21ad99ec0997c61f0a62e7a98f12a48aedf6743b08ea9bc1b60",
+      "size": 1225,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/retouch-panel.tsx",
+      "status": "complete",
+      "checksum": "9fc95b8b3c762587d94fb9a718d8fd64387fc07f6e9dae6f8f3f89c5de440b0d",
+      "size": 11403,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/parallax-scroll-view.tsx",
+      "status": "complete",
+      "checksum": "e522a2160fe0ea9b739235ee8b8ffa1f7a0aa481dabd9117f944970c0ea94fbc",
+      "size": 2146,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/glass-card.tsx",
+      "status": "complete",
+      "checksum": "86e41b6d1a562ef69bb8e15f894f9adaa1d55c05e670cd01f839e6053392577e",
+      "size": 8386,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/nexar-status-bar.tsx",
+      "status": "complete",
+      "checksum": "eb22029b968597302a2edbb53d74345717f51f59394aea6c7100232fa05e6c15",
+      "size": 3073,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/screen-container.tsx",
+      "status": "complete",
+      "checksum": "db79ad7e015e9c2e7a8efaa816115140627bd379f1537a3073b392386a556bdf",
+      "size": 1705,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/feature-gate.tsx",
+      "status": "complete",
+      "checksum": "85e5c0ac800afcff6190096726fafec80fbcaf0793a68ac8a98e241f1d865a90",
+      "size": 2822,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/haptic-tab.tsx",
+      "status": "complete",
+      "checksum": "d1894679c17ba625bbcd680f15aca2c1d53fe6db5c68a6714e0cd93eb8864103",
+      "size": 608,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/hello-wave.tsx",
+      "status": "complete",
+      "checksum": "eea51b5ae4e01672ce8814082d24515c0ad58b4a56abf8d855898e7bdda1067d",
+      "size": 454,
+      "modified": "2026-02-19T18:01:05.333547",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/ui/icon-symbol.ios.tsx",
+      "status": "complete",
+      "checksum": "3e811aa88e538cf973ca89005d7be342b94207a78c8e589af67720d7ec4b8821",
+      "size": 642,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/ui/collapsible.tsx",
+      "status": "complete",
+      "checksum": "b534233a88b1dfc055d8804718a902d2d73e237fc9a40215ce93e4b1b28cfab6",
+      "size": 1048,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/ui/icon-symbol.tsx",
+      "status": "complete",
+      "checksum": "5100cf8ee3a8a4b3bb0c6102f495862088eea401bd4af7aa0daf1569e8cb4aa5",
+      "size": 1946,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "components/ui/UIComponents-enhanced.tsx",
+      "status": "complete",
+      "checksum": "bee1b4983b2fefa0157f166e2f3cbf4dbefbe91697edfeef5e893dadafba1cf0",
+      "size": 4902,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "tsx",
+      "notes": []
+    },
+    {
+      "path": "scripts/generate_qr.mjs",
+      "status": "complete",
+      "checksum": "ec99d3f6d71a322306a7769114e88c32dc3b61ccb582853e9b013907363448a6",
+      "size": 299,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "mjs",
+      "notes": []
+    },
+    {
+      "path": "scripts/seed-database.ts",
+      "status": "complete",
+      "checksum": "846a9235c4fbbcb4837b41134d87a9a1d5a7defd6e6e004486490e41b6b16a1f",
+      "size": 9307,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "scripts/reset-project.js",
+      "status": "complete",
+      "checksum": "2f60cad2a2295b80c40e5cc7f3fa6a46a5a3a64bf04e433fc538a5d9733ca507",
+      "size": 3610,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "js",
+      "notes": []
+    },
+    {
+      "path": "scripts/load-env.js",
+      "status": "complete",
+      "checksum": "12c476104044b924931e21e2964124a2f9966ffe63b45adc36a722bfa7b7e31c",
+      "size": 1501,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "js",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "tests/auth.logout.test.ts",
+      "status": "complete",
+      "checksum": "8891eb841f56c6f30005b3a43767a4dc2d0faa1bae4ac688a8337df74411d6c0",
+      "size": 1764,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "drizzle/0002_nexar_features.sql",
+      "status": "complete",
+      "checksum": "8e4bda7433922fdc0e9228781781aaaf3e1e885666372a0e64d3dbe5bb7713ad",
+      "size": 2210,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "sql",
+      "notes": []
+    },
+    {
+      "path": "drizzle/relations.ts",
+      "status": "complete",
+      "checksum": "061734ecd6421c106808467e3136f729df566788531689923517f44b531f147f",
+      "size": 71,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "drizzle/0001_quiet_nomad.sql",
+      "status": "complete",
+      "checksum": "2b410ca777e4cd9773c1d655f111c6e6a5beb3c411facf10297a5eb7bfd78b20",
+      "size": 4317,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "sql",
+      "notes": []
+    },
+    {
+      "path": "drizzle/0000_elite_eternals.sql",
+      "status": "complete",
+      "checksum": "814a08e40d7fc2bcfd458759d18319198ca8ae394f2fa15617a78678e9c9c93b",
+      "size": 483,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "sql",
+      "notes": []
+    },
+    {
+      "path": "drizzle/schema.ts",
+      "status": "complete",
+      "checksum": "62f8798037c0accedfa7890134cfbea0c6564c5c95f6ccbcbd79db8e4175ea3e",
+      "size": 10345,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "drizzle/migrations/.gitkeep",
+      "status": "empty",
+      "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "noext",
+      "notes": []
+    },
+    {
+      "path": "drizzle/meta/0000_snapshot.json",
+      "status": "complete",
+      "checksum": "b7a2022015ccca4b794abe639c7c94a54749472bc4967a0d89fc104cfa589033",
+      "size": 2546,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "json",
+      "notes": []
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "status": "complete",
+      "checksum": "1318bf9b95f2e5cf3bd84b67bdd1444a9d0c8faba7a072b504d5cde7af5ed877",
+      "size": 342,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "json",
+      "notes": []
+    },
+    {
+      "path": "drizzle/meta/0001_snapshot.json",
+      "status": "complete",
+      "checksum": "a897830cb88bf1df347d7a8361990e53d3787da0cd4fa3e68f10ca66df32e233",
+      "size": 23456,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "json",
+      "notes": []
+    },
+    {
+      "path": "hooks/use-nexar-state.ts",
+      "status": "complete",
+      "checksum": "dd3372f8ed3c1f12845b6ceb7111b8327483fb6705140d703fb6242f774d6a54",
+      "size": 1838,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "hooks/use-auth.ts",
+      "status": "complete",
+      "checksum": "8a12d2ff0aeda92f00b15f44e429d5abd8655152a3b60bb500d432dde555e9cd",
+      "size": 5140,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "hooks/use-color-scheme.web.ts",
+      "status": "complete",
+      "checksum": "1acb2e9c3bdb9adb6f36245277231c499d22d833b5679c599fdbc4daff485c93",
+      "size": 524,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "hooks/use-color-scheme.ts",
+      "status": "complete",
+      "checksum": "805a83dac0dfe1cea5877a426e0035494240fc67417352fdb7fd29db3ca58ef8",
+      "size": 178,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "hooks/use-colors.ts",
+      "status": "complete",
+      "checksum": "417993e78838056a95b51c0c040f93e7f7eb156da551ad2f9c79344565f6cbda",
+      "size": 548,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "shared/const.ts",
+      "status": "complete",
+      "checksum": "d6bcf3c2e0319e8cd129d303939dafdc686adc4cffb124061d2d9cf846bd5030",
+      "size": 319,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "shared/types.ts",
+      "status": "complete",
+      "checksum": "c69e1e90ce1e1b5974902f9db6b5dd9de7b8574d4423e7ab3e99800d239783c2",
+      "size": 202,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "shared/_core/errors.ts",
+      "status": "complete",
+      "checksum": "1bc9f9b83839bd0055355b2eafee560d626cd1ee474ce1a88cb475bc3c6c1765",
+      "size": 646,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "reports/nexar_audit.md",
+      "status": "complete",
+      "checksum": "a103c18ff6582155300890f287895d5dd557d6fd83361c298e71d8c73fe8a81d",
+      "size": 3340,
+      "modified": "2026-02-19T18:02:11.060395",
+      "type": "md",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "reports/nexar_audit.json",
+      "status": "complete",
+      "checksum": "04a4909947d934ba35879e3e67a2a4c68f0d4da2930f591c26fe4512642bfc84",
+      "size": 66247,
+      "modified": "2026-02-19T18:01:41.434648",
+      "type": "json",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "constants/const.ts",
+      "status": "complete",
+      "checksum": "2b0c999ff396a0355c42ab232d679f6068adefabe16da1419706eee7c05cc70f",
+      "size": 3405,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "constants/theme.ts",
+      "status": "complete",
+      "checksum": "b51e84c76453b4ff4ff54fcd6f90ab123ab15ae4ab0479c93411223f4e42a457",
+      "size": 319,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "constants/oauth.ts",
+      "status": "complete",
+      "checksum": "8fb9860997ee7a47ecc5a5b529d2378a46fdc284f1449218d85b695b8edd3c46",
+      "size": 4177,
+      "modified": "2026-02-19T18:01:05.337548",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/routers.ts",
+      "status": "complete",
+      "checksum": "5dcbfdd2a9b331404c5d055d34a48dabffc966a06b1fd7602d1f7f1294688a47",
+      "size": 16207,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/storage.ts",
+      "status": "complete",
+      "checksum": "34d75a236aa73ac3278ebfe6e6feebd7da488714318b8acad4f2fe6bc862f5fb",
+      "size": 2959,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/db.ts",
+      "status": "complete",
+      "checksum": "a6c2df914abcd70b4ecffa19670350b2168bcd1daf2068b0c1d7ad640451c0c6",
+      "size": 22188,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/README.md",
+      "status": "complete",
+      "checksum": "c1fdcc7d889d80da5f8eb84355fbc8e6022afae3409c470dd82751454d27aa7b",
+      "size": 35269,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "md",
+      "notes": [
+        "contains todo/mock markers"
+      ]
+    },
+    {
+      "path": "server/_core/sdk.ts",
+      "status": "complete",
+      "checksum": "011192d2cebd11d24beeb71e2298f961e78c91a79dc870592636ac5c50e22bda",
+      "size": 8758,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/index.ts",
+      "status": "complete",
+      "checksum": "6b3208b49fdecb1ba5df0a49ca3ab3140245d2dc7d3bec51b5bab65cc35ec7ad",
+      "size": 2382,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/context.ts",
+      "status": "complete",
+      "checksum": "066849628e98b242e6728b04bee90c1c62bd1c8b165620ab8e7a62fdfbb7644f",
+      "size": 698,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/env.ts",
+      "status": "complete",
+      "checksum": "1ae53bade50319337082627642f3f601099b4d5aa1c0f22209e0b637c2ba1d9b",
+      "size": 472,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/llm.ts",
+      "status": "complete",
+      "checksum": "7cb25caf8d4ccb83c69a32146698fc984d299e210b15518f3a0dc080a244baa0",
+      "size": 7220,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/cookies.ts",
+      "status": "complete",
+      "checksum": "9307630d838c16dbbcc811444afdd82ff7ffdab2f68eb39f965d24ac6d517f6a",
+      "size": 1875,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/dataApi.ts",
+      "status": "complete",
+      "checksum": "c22ccfa0da56c416189bd0c387a25d8ac62c62aaa35e650c29477730d4c91c23",
+      "size": 1945,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/trpc.ts",
+      "status": "complete",
+      "checksum": "f2ab36f41451c9334c3f06581824668ecabc8cdffb255537650ca9e4ac95d612",
+      "size": 1089,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/notification.ts",
+      "status": "complete",
+      "checksum": "575b00707d9c42828e256c5f4d92dc792624d82f7890341045763df3ba02748c",
+      "size": 3160,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/systemRouter.ts",
+      "status": "complete",
+      "checksum": "0d047d161b6c3060614ccec18d20d072d71a54327bb9ece3508e3807c125ad8a",
+      "size": 755,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/voiceTranscription.ts",
+      "status": "complete",
+      "checksum": "5471a1c004d85d9509ee4598e2f43caa5e6c23d853b3fac9863bd12a9483d7cf",
+      "size": 8052,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/imageGeneration.ts",
+      "status": "complete",
+      "checksum": "42d9dd2ad501ee374cf45dc82da3c9a3b1a7f6dbecc001dc482a87987c779111",
+      "size": 2272,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/oauth.ts",
+      "status": "complete",
+      "checksum": "ff2f73892e0320e8244fd19c7b44b2a04d3be99b5c205fe0beab0c7ab257a15f",
+      "size": 6027,
+      "modified": "2026-02-19T18:01:05.341547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/types/manusTypes.ts",
+      "status": "complete",
+      "checksum": "e8c343eebf809958a694727e1f85d0355e323430145ace53a79c6980e6b8b47a",
+      "size": 1371,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    },
+    {
+      "path": "server/_core/types/cookie.d.ts",
+      "status": "complete",
+      "checksum": "fd4b0369e8ecdf9740369690f9ce9ff92662c99dd6452c15b89ddaa924263cca",
+      "size": 169,
+      "modified": "2026-02-19T18:01:05.345547",
+      "type": "ts",
+      "notes": []
+    }
+  ],
+  "missing_relative_imports": []
+}
