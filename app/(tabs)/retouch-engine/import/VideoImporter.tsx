@@ -56,7 +56,7 @@ export function VideoImporter({ onImport, allowedTypes = ['image', 'video'], max
         onImport({
           uri: asset.uri,
           type: asset.type === 'video' ? 'video' : 'image',
-          name: asset.fileName ?? \`media_\${Date.now()}\`,
+          name: asset.fileName ?? `media_${Date.now()}`,
           size: asset.fileSize,
           duration: asset.duration ?? undefined,
           width: asset.width,
@@ -89,7 +89,7 @@ export function VideoImporter({ onImport, allowedTypes = ['image', 'video'], max
         onImport({
           uri: asset.uri,
           type: asset.type === 'video' ? 'video' : 'image',
-          name: \`capture_\${Date.now()}\`,
+          name: `capture_${Date.now()}`,
           width: asset.width,
           height: asset.height,
         });
