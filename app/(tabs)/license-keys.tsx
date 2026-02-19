@@ -1,490 +1,714 @@
-// Copyright © Knoux. All rights reserved.
-/**
- * 🔑 KNOUX NEXAR PRO — License Keys Manager
- * ✅ FIXED: متصل بـ tRPC backend الحقيقي — لا INITIAL_KEYS وهمية
- */
+// license-keys.tsx
+"use client";
 
-import React, { useState, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { db } from "@/lib/firebase";
 import {
-  View, Text, ScrollView, TouchableOpacity, TextInput,
-  Platform, Alert, Animated, Share,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import * as Haptics from "expo-haptics";
-import * as Clipboard from "expo-clipboard";
-import { MaterialIcons } from "@expo/vector-icons";
-import { ScreenContainer } from "@/components/screen-container";
-import { useLanguage } from "@/lib/language-context";
-import { trpc } from "@/lib/trpc";
-import { useAuth } from "@/hooks/use-auth";
+  collection,
+  query,
+  where,
+  orderBy,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp,
+  limit,
+} from "firebase/firestore";
+import {
+  KeyIcon,
+  ClipboardDocumentIcon,
+  CheckCircleIcon,
+  PlusIcon,
+  TrashIcon,
+  EyeIcon,
+} from "@heroicons/react/24/outline";
+import QRCode from "qrcode";
 
-// ─── أنواع ──────────────────────────────────────────────────────────────────
-type Plan = "free" | "pro" | "premium";
-
-// ─── ألوان الخطط ────────────────────────────────────────────────────────────
-const PLAN_COLORS: Record<Plan, { color: string; bg: string; label: string; icon: string }> = {
-  free:    { color: "#10B981", bg: "rgba(16,185,129,0.15)",  label: "FREE",    icon: "🎁" },
-  pro:     { color: "#A78BFA", bg: "rgba(167,139,250,0.15)", label: "PRO",     icon: "⚡" },
-  premium: { color: "#FCD34D", bg: "rgba(252,211,77,0.15)",  label: "PREMIUM", icon: "👑" },
-};
-
-const STATUS_COLORS: Record<string, { color: string; bg: string }> = {
-  active:    { color: "#10B981", bg: "rgba(16,185,129,0.15)"  },
-  used:      { color: "#F59E0B", bg: "rgba(245,158,11,0.15)"  },
-  expired:   { color: "#EF4444", bg: "rgba(239,68,68,0.15)"   },
-  revoked:   { color: "#6B7280", bg: "rgba(107,114,128,0.15)" },
-  available: { color: "#10B981", bg: "rgba(16,185,129,0.15)"  },
-};
-
-// ─── بطاقة مفتاح ────────────────────────────────────────────────────────────
-function KeyCard({ licKey, ar, onCopy, onShare, onRevoke }: {
-  licKey: any; ar: boolean;
-  onCopy: () => void; onShare: () => void; onRevoke: () => void;
-}) {
-  const plan   = PLAN_COLORS[licKey.plan as Plan] ?? PLAN_COLORS.free;
-  const status = STATUS_COLORS[licKey.status] ?? STATUS_COLORS.available;
-  const scale  = useRef(new Animated.Value(1)).current;
-
-  const pressIn  = () => Animated.spring(scale, { toValue: 0.97, useNativeDriver: true }).start();
-  const pressOut = () => Animated.spring(scale, { toValue: 1,    useNativeDriver: true }).start();
-
-  return (
-    <Animated.View style={{ transform: [{ scale }], marginBottom: 14 }}>
-      <TouchableOpacity onPressIn={pressIn} onPressOut={pressOut} activeOpacity={1}>
-        <View style={{
-          backgroundColor: "rgba(255,255,255,0.04)",
-          borderRadius: 20, padding: 18,
-          borderWidth: 1, borderColor: `${plan.color}35`,
-        }}>
-          {/* الصف الأول */}
-          <View style={{ flexDirection: ar ? "row-reverse" : "row", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-            <View style={{ flexDirection: ar ? "row-reverse" : "row", alignItems: "center", gap: 8 }}>
-              <Text style={{ fontSize: 22 }}>{plan.icon}</Text>
-              <View style={{ backgroundColor: plan.bg, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 }}>
-                <Text style={{ color: plan.color, fontSize: 11, fontWeight: "900" }}>{plan.label}</Text>
-              </View>
-            </View>
-            <View style={{ backgroundColor: status.bg, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 }}>
-              <Text style={{ color: status.color, fontSize: 10, fontWeight: "800" }}>
-                {licKey.status?.toUpperCase() ?? "ACTIVE"}
-              </Text>
-            </View>
-          </View>
-
-          {/* المفتاح */}
-          <View style={{ backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 12, padding: 12, marginBottom: 12 }}>
-            <Text style={{ fontFamily: Platform.OS === "ios" ? "Menlo" : "monospace", fontSize: 16, color: plan.color, letterSpacing: 2, textAlign: "center", fontWeight: "800" }}>
-              {licKey.key}
-            </Text>
-          </View>
-
-          {/* معلومات */}
-          <View style={{ flexDirection: ar ? "row-reverse" : "row", justifyContent: "space-between", marginBottom: 14 }}>
-            <View>
-              <Text style={{ color: "#6B7280", fontSize: 10, marginBottom: 2 }}>
-                {ar ? "الأجهزة" : "Devices"}
-              </Text>
-              <Text style={{ color: "#E5E7EB", fontSize: 13, fontWeight: "700" }}>
-                {licKey.devicesUsed ?? 0}/{licKey.maxDevices ?? 1}
-              </Text>
-            </View>
-            <View>
-              <Text style={{ color: "#6B7280", fontSize: 10, marginBottom: 2 }}>
-                {ar ? "تاريخ الإنشاء" : "Created"}
-              </Text>
-              <Text style={{ color: "#E5E7EB", fontSize: 13, fontWeight: "700" }}>
-                {licKey.createdAt ? new Date(licKey.createdAt).toLocaleDateString() : "—"}
-              </Text>
-            </View>
-            {licKey.expiresAt && (
-              <View>
-                <Text style={{ color: "#6B7280", fontSize: 10, marginBottom: 2 }}>
-                  {ar ? "ينتهي" : "Expires"}
-                </Text>
-                <Text style={{ color: "#E5E7EB", fontSize: 13, fontWeight: "700" }}>
-                  {new Date(licKey.expiresAt).toLocaleDateString()}
-                </Text>
-              </View>
-            )}
-          </View>
-
-          {licKey.notes && (
-            <Text style={{ color: "#9CA3AF", fontSize: 12, marginBottom: 12, fontStyle: "italic" }}>
-              {licKey.notes}
-            </Text>
-          )}
-
-          {/* أزرار */}
-          <View style={{ flexDirection: "row", gap: 8 }}>
-            <TouchableOpacity onPress={onCopy} style={{ flex: 1, backgroundColor: "rgba(167,139,250,0.15)", borderRadius: 12, paddingVertical: 10, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 6 }}>
-              <MaterialIcons name="content-copy" size={15} color="#A78BFA" />
-              <Text style={{ color: "#A78BFA", fontSize: 12, fontWeight: "700" }}>{ar ? "نسخ" : "Copy"}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={onShare} style={{ flex: 1, backgroundColor: "rgba(16,185,129,0.15)", borderRadius: 12, paddingVertical: 10, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 6 }}>
-              <MaterialIcons name="share" size={15} color="#10B981" />
-              <Text style={{ color: "#10B981", fontSize: 12, fontWeight: "700" }}>{ar ? "مشاركة" : "Share"}</Text>
-            </TouchableOpacity>
-            {(licKey.status === "active" || licKey.status === "available") && (
-              <TouchableOpacity onPress={onRevoke} style={{ flex: 1, backgroundColor: "rgba(239,68,68,0.15)", borderRadius: 12, paddingVertical: 10, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 6 }}>
-                <MaterialIcons name="cancel" size={15} color="#EF4444" />
-                <Text style={{ color: "#EF4444", fontSize: 12, fontWeight: "700" }}>{ar ? "إلغاء" : "Revoke"}</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        </View>
-      </TouchableOpacity>
-    </Animated.View>
-  );
+interface LicenseKey {
+  id: string;
+  key: string;
+  productId: string;
+  productName: string;
+  userId?: string;
+  userEmail?: string;
+  type: "trial" | "basic" | "pro" | "enterprise" | "lifetime";
+  status: "active" | "inactive" | "expired" | "revoked";
+  features: string[];
+  maxDevices: number;
+  activatedDevices: Device[];
+  createdAt: Date;
+  activatedAt?: Date;
+  expiresAt?: Date;
+  lastUsed?: Date;
+  notes?: string;
+  createdBy: string;
 }
 
-// ─── الشاشة الرئيسية ────────────────────────────────────────────────────────
-export default function LicenseKeysScreen() {
-  const { language } = useLanguage();
-  const ar = language === "ar";
-  const { user } = useAuth();
+interface Device {
+  id: string;
+  name: string;
+  platform: string;
+  lastIp?: string;
+  lastSeen: Date;
+}
 
-  const [activeTab, setActiveTab] = useState<"myKeys" | "activate" | "generate">("myKeys");
-  const [activateInput, setActivateInput] = useState("");
-  const [activateResult, setActivateResult] = useState<{ success: boolean; message: string } | null>(null);
-  const [selectedPlan, setSelectedPlan] = useState<Plan>("pro");
-  const [selectedDevices, setSelectedDevices] = useState(1);
-  const [notes, setNotes] = useState("");
-  const [generatedKey, setGeneratedKey] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  types: string[];
+}
 
-  // ─── tRPC Queries ─────────────────────────────────────────────────────────
-  const { data: keys = [], isLoading, refetch } = trpc.licenses.myKeys.useQuery(
-    undefined,
-    { enabled: !!user }
+export default function LicenseKeys() {
+  const { user, isAdmin } = useAuth();
+  const [keys, setKeys] = useState<LicenseKey[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showGenerateForm, setShowGenerateForm] = useState(false);
+  const [showVerifyForm, setShowVerifyForm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterStatus, setFilterStatus] = useState<string>("all");
+  const [showQR, setShowQR] = useState(false);
+  const [qrCode, setQrCode] = useState<string>("");
+
+  const [newKey, setNewKey] = useState({
+    productId: "",
+    productName: "",
+    type: "basic" as LicenseKey["type"],
+    maxDevices: 1,
+    expiresIn: 30,
+    notes: "",
+  });
+
+  useEffect(() => {
+    loadProducts();
+    loadKeys();
+  }, [user, filterStatus]);
+
+  const loadProducts = async () => {
+    try {
+      const productsRef = collection(db, "products");
+      const snapshot = await getDocs(productsRef);
+      const productsData: Product[] = snapshot.docs.map((pDoc) => ({
+        id: pDoc.id,
+        ...pDoc.data(),
+      })) as Product[];
+
+      setProducts(productsData);
+
+      if (productsData.length > 0) {
+        setNewKey((prev) => ({
+          ...prev,
+          productId: productsData[0].id,
+          productName: productsData[0].name,
+        }));
+      }
+    } catch (error) {
+      console.error("Load products error:", error);
+    }
+  };
+
+  const loadKeys = async () => {
+    try {
+      const keysRef = collection(db, "licenseKeys");
+      let q;
+
+      if (isAdmin) {
+        q = query(keysRef, orderBy("createdAt", "desc"), limit(100));
+      } else {
+        q = query(
+          keysRef,
+          where("userId", "==", user?.uid),
+          orderBy("createdAt", "desc"),
+        );
+      }
+
+      if (filterStatus !== "all") {
+        q = query(q, where("status", "==", filterStatus));
+      }
+
+      const snapshot = await getDocs(q);
+      const keysData: LicenseKey[] = snapshot.docs.map((keyDoc) => ({
+        id: keyDoc.id,
+        ...keyDoc.data(),
+        createdAt: keyDoc.data().createdAt?.toDate(),
+        activatedAt: keyDoc.data().activatedAt?.toDate(),
+        expiresAt: keyDoc.data().expiresAt?.toDate(),
+        lastUsed: keyDoc.data().lastUsed?.toDate(),
+        activatedDevices:
+          keyDoc.data().activatedDevices?.map((d: any) => ({
+            ...d,
+            lastSeen: d.lastSeen?.toDate(),
+          })) || [],
+      })) as LicenseKey[];
+
+      setKeys(keysData);
+    } catch (error) {
+      console.error("Load keys error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const generateKey = async () => {
+    if (!user) return;
+
+    try {
+      const key = generateLicenseKey();
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + newKey.expiresIn);
+
+      const licenseKey: Omit<LicenseKey, "id"> = {
+        key,
+        productId: newKey.productId,
+        productName: newKey.productName,
+        type: newKey.type,
+        status: "active",
+        features: getFeaturesForType(newKey.type),
+        maxDevices: newKey.maxDevices,
+        activatedDevices: [],
+        createdAt: serverTimestamp() as any,
+        expiresAt,
+        notes: newKey.notes,
+        createdBy: user.uid,
+      };
+
+      await addDoc(collection(db, "licenseKeys"), licenseKey);
+
+      setShowGenerateForm(false);
+      setNewKey({
+        productId: products[0]?.id || "",
+        productName: products[0]?.name || "",
+        type: "basic",
+        maxDevices: 1,
+        expiresIn: 30,
+        notes: "",
+      });
+
+      loadKeys();
+    } catch (error) {
+      console.error("Generate key error:", error);
+    }
+  };
+
+  const generateLicenseKey = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const segments = [];
+
+    for (let i = 0; i < 4; i += 1) {
+      let segment = "";
+      for (let j = 0; j < 4; j += 1) {
+        segment += chars[Math.floor(Math.random() * chars.length)];
+      }
+      segments.push(segment);
+    }
+
+    return segments.join("-");
+  };
+
+  const getFeaturesForType = (type: string): string[] => {
+    const features: Record<string, string[]> = {
+      trial: ["مدة تجريبية 14 يوم", "جهاز واحد", "جميع الميزات الأساسية"],
+      basic: ["ميزات أساسية", "جهاز واحد", "دعم عبر البريد"],
+      pro: ["جميع الميزات", "3 أجهزة", "دعم فني مباشر", "تحديثات مجانية"],
+      enterprise: ["جميع الميزات", "10 أجهزة", "دعم VIP", "تثبيت مخصص"],
+      lifetime: [
+        "جميع الميزات",
+        "5 أجهزة",
+        "دعم مدى الحياة",
+        "تحديثات إلى الأبد",
+      ],
+    };
+
+    return features[type] || features.basic;
+  };
+
+  const revokeKey = async (keyId: string) => {
+    if (!confirm("هل أنت متأكد من إلغاء هذا المفتاح؟")) return;
+
+    try {
+      await updateDoc(doc(db, "licenseKeys", keyId), {
+        status: "revoked",
+      });
+
+      loadKeys();
+    } catch (error) {
+      console.error("Revoke key error:", error);
+    }
+  };
+
+  const removeKey = async (keyId: string) => {
+    if (!confirm("هل أنت متأكد من حذف هذا المفتاح نهائياً؟")) return;
+
+    try {
+      await deleteDoc(doc(db, "licenseKeys", keyId));
+      loadKeys();
+    } catch (error) {
+      console.error("Delete key error:", error);
+    }
+  };
+
+  const verifyKey = async (keyToVerify: string) => {
+    try {
+      const keysRef = collection(db, "licenseKeys");
+      const q = query(keysRef, where("key", "==", keyToVerify));
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        alert("❌ مفتاح غير صالح");
+        return;
+      }
+
+      const keyData = snapshot.docs[0].data() as LicenseKey;
+
+      if (keyData.status !== "active") {
+        alert(`❌ المفتاح غير نشط (الحالة: ${keyData.status})`);
+        return;
+      }
+
+      if (keyData.expiresAt && new Date(keyData.expiresAt) < new Date()) {
+        alert("❌ المفتاح منتهي الصلاحية");
+        return;
+      }
+
+      alert("✅ مفتاح صالح ✓");
+    } catch (error) {
+      console.error("Verify key error:", error);
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    alert("تم النسخ");
+  };
+
+  const generateQR = async (key: string) => {
+    try {
+      const url = `nexar://activate?key=${key}`;
+      const qr = await QRCode.toDataURL(url);
+      setQrCode(qr);
+      setShowQR(true);
+    } catch (error) {
+      console.error("Generate QR error:", error);
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    const colors: any = {
+      active: "text-green-400 bg-green-400/10",
+      inactive: "text-gray-400 bg-gray-400/10",
+      expired: "text-yellow-400 bg-yellow-400/10",
+      revoked: "text-red-400 bg-red-400/10",
+    };
+    return colors[status] || "text-gray-400 bg-gray-400/10";
+  };
+
+  const getTypeColor = (type: string) => {
+    const colors: any = {
+      trial: "bg-blue-600",
+      basic: "bg-green-600",
+      pro: "bg-purple-600",
+      enterprise: "bg-yellow-600",
+      lifetime: "bg-red-600",
+    };
+    return colors[type] || "bg-gray-600";
+  };
+
+  const filteredKeys = keys.filter(
+    (key) =>
+      key.key.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      key.productName.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  // ─── tRPC Mutations ───────────────────────────────────────────────────────
-  const generateMutation = trpc.licenses.generate.useMutation({
-    onSuccess: (newKey) => {
-      setGeneratedKey(newKey.key);
-      refetch();
-      if (Platform.OS !== "web") Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    },
-    onError: (err) => Alert.alert(ar ? "خطأ" : "Error", err.message),
-  });
-
-  const activateMutation = trpc.licenses.activate.useMutation({
-    onSuccess: () => {
-      refetch();
-      setActivateResult({ success: true, message: ar ? "✅ تم تفعيل المفتاح بنجاح!" : "✅ Key activated successfully!" });
-      setActivateInput("");
-      if (Platform.OS !== "web") Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    },
-    onError: (err) => {
-      setActivateResult({ success: false, message: err.message });
-    },
-  });
-
-  const revokeMutation = trpc.licenses.revoke.useMutation({
-    onSuccess: () => refetch(),
-    onError: (err) => Alert.alert(ar ? "خطأ" : "Error", err.message),
-  });
-
-  // ─── Handlers ─────────────────────────────────────────────────────────────
-  const handleCopy = async (key: string) => {
-    if (Platform.OS !== "web") Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    await Clipboard.setStringAsync(key);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleShare = async (key: string) => {
-    try {
-      await Share.share({
-        message: ar
-          ? `🔑 مفتاح ترخيص Knoux Nexar Pro:\n${key}\n\nفعّل الآن على التطبيق!`
-          : `🔑 Your Knoux Nexar Pro License Key:\n${key}\n\nActivate now in the app!`,
-      });
-    } catch (_) {}
-  };
-
-  const handleRevoke = (id: number) => {
-    Alert.alert(
-      ar ? "تأكيد الإلغاء" : "Confirm Revoke",
-      ar ? "هل أنت متأكد من إلغاء هذا المفتاح؟ لا يمكن التراجع." : "Are you sure? This cannot be undone.",
-      [
-        { text: ar ? "لا" : "Cancel", style: "cancel" },
-        {
-          text: ar ? "إلغاء المفتاح" : "Revoke",
-          style: "destructive",
-          onPress: () => {
-            if (Platform.OS !== "web") Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-            revokeMutation.mutate({ id });
-          },
-        },
-      ]
-    );
-  };
-
-  const handleActivate = () => {
-    const input = activateInput.trim().toUpperCase();
-    if (!input) {
-      setActivateResult({ success: false, message: ar ? "أدخل المفتاح أولاً" : "Please enter a key" });
-      return;
-    }
-    if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    activateMutation.mutate({ key: input });
-  };
-
-  const handleGenerate = () => {
-    if (!user) {
-      Alert.alert(ar ? "يرجى تسجيل الدخول" : "Please sign in");
-      return;
-    }
-    generateMutation.mutate({
-      plan: selectedPlan,
-      maxDevices: selectedDevices,
-      notes: notes.trim() || undefined,
-    });
-    setNotes("");
-  };
-
-  const stats = {
-    total:   keys.length,
-    active:  keys.filter((k: any) => k.status === "active" || k.status === "available").length,
-    premium: keys.filter((k: any) => k.plan === "premium").length,
-  };
-
-  const TABS = [
-    { key: "myKeys" as const,   icon: "🔑", labelAr: "مفاتيحي",     labelEn: "My Keys"  },
-    { key: "activate" as const, icon: "✅", labelAr: "تفعيل",       labelEn: "Activate" },
-    { key: "generate" as const, icon: "⚙️", labelAr: "توليد مفتاح", labelEn: "Generate" },
-  ];
-
   return (
-    <ScreenContainer className="flex-1">
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+    <div className="min-h-screen bg-gray-900 text-white py-12">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">مفاتيح الترخيص</h1>
 
-        {/* Header */}
-        <LinearGradient colors={["rgba(167,139,250,0.2)", "transparent"]} style={{ borderRadius: 24, padding: 24, marginBottom: 20 }}>
-          <Text style={{ fontSize: 28, fontWeight: "900", color: "#F3F4F6", marginBottom: 4 }}>
-            {ar ? "🔑 مفاتيح الترخيص" : "🔑 License Keys"}
-          </Text>
-          <Text style={{ color: "#9CA3AF", fontSize: 13 }}>
-            {ar ? "إدارة مفاتيح الترخيص" : "Manage your license keys"}
-          </Text>
-
-          {/* Stats */}
-          <View style={{ flexDirection: "row", gap: 12, marginTop: 16 }}>
-            {[
-              { label: ar ? "الإجمالي" : "Total", value: stats.total, color: "#A78BFA" },
-              { label: ar ? "نشطة" : "Active", value: stats.active, color: "#10B981" },
-              { label: ar ? "بريميوم" : "Premium", value: stats.premium, color: "#FCD34D" },
-            ].map((s) => (
-              <View key={s.label} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 14, padding: 12, alignItems: "center" }}>
-                <Text style={{ color: s.color, fontSize: 24, fontWeight: "900" }}>{s.value}</Text>
-                <Text style={{ color: "#9CA3AF", fontSize: 10, marginTop: 2 }}>{s.label}</Text>
-              </View>
-            ))}
-          </View>
-        </LinearGradient>
-
-        {/* Tabs */}
-        <View style={{ flexDirection: "row", gap: 8, marginBottom: 20 }}>
-          {TABS.map((tab) => (
-            <TouchableOpacity
-              key={tab.key}
-              onPress={() => { setActiveTab(tab.key); setActivateResult(null); setGeneratedKey(null); }}
-              style={{
-                flex: 1, paddingVertical: 10, borderRadius: 14, alignItems: "center",
-                backgroundColor: activeTab === tab.key ? "#A78BFA" : "rgba(255,255,255,0.06)",
-                borderWidth: 1, borderColor: activeTab === tab.key ? "#A78BFA" : "rgba(255,255,255,0.1)",
-              }}
+          <div className="flex gap-4">
+            <button
+              onClick={() => setShowVerifyForm(true)}
+              className="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition"
             >
-              <Text style={{ fontSize: 16, marginBottom: 2 }}>{tab.icon}</Text>
-              <Text style={{ color: activeTab === tab.key ? "#000" : "#9CA3AF", fontSize: 10, fontWeight: "700" }}>
-                {ar ? tab.labelAr : tab.labelEn}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+              تحقق من مفتاح
+            </button>
 
-        {/* ── تبويب مفاتيحي ────────────────────────────────────────────── */}
-        {activeTab === "myKeys" && (
-          <View>
-            {isLoading ? (
-              <View style={{ alignItems: "center", padding: 40 }}>
-                <Text style={{ fontSize: 40, marginBottom: 12 }}>⏳</Text>
-                <Text style={{ color: "#9CA3AF" }}>{ar ? "جاري التحميل..." : "Loading..."}</Text>
-              </View>
-            ) : keys.length === 0 ? (
-              <View style={{ backgroundColor: "rgba(255,255,255,0.04)", borderRadius: 20, padding: 40, alignItems: "center", borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" }}>
-                <Text style={{ fontSize: 48, marginBottom: 12 }}>🔑</Text>
-                <Text style={{ color: "#9CA3AF", textAlign: "center", fontSize: 14 }}>
-                  {ar ? "لا توجد مفاتيح بعد\nاضغط على تبويب \"توليد مفتاح\" لإنشاء أول مفتاح" : "No keys yet\nGo to \"Generate\" tab to create your first key"}
-                </Text>
-              </View>
-            ) : (
-              keys.map((k: any) => (
-                <KeyCard
-                  key={k.id}
-                  licKey={k}
-                  ar={ar}
-                  onCopy={() => handleCopy(k.key)}
-                  onShare={() => handleShare(k.key)}
-                  onRevoke={() => handleRevoke(k.id)}
-                />
-              ))
+            {isAdmin && (
+              <button
+                onClick={() => setShowGenerateForm(true)}
+                className="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition flex items-center gap-2"
+              >
+                <PlusIcon className="w-5 h-5" />
+                توليد مفتاح
+              </button>
             )}
-          </View>
-        )}
+          </div>
+        </div>
 
-        {/* ── تبويب تفعيل ──────────────────────────────────────────────── */}
-        {activeTab === "activate" && (
-          <View style={{ backgroundColor: "rgba(255,255,255,0.04)", borderRadius: 20, padding: 20, borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" }}>
-            <Text style={{ color: "#F3F4F6", fontSize: 18, fontWeight: "800", marginBottom: 16 }}>
-              {ar ? "✅ تفعيل مفتاح" : "✅ Activate Key"}
-            </Text>
-            <TextInput
-              value={activateInput}
-              onChangeText={setActivateInput}
-              placeholder={ar ? "XXXX-XXXX-XXXX-XXXX" : "XXXX-XXXX-XXXX-XXXX"}
-              placeholderTextColor="#4B5563"
-              autoCapitalize="characters"
-              style={{
-                backgroundColor: "rgba(0,0,0,0.4)",
-                borderRadius: 14, padding: 16,
-                color: "#A78BFA",
-                fontFamily: Platform.OS === "ios" ? "Menlo" : "monospace",
-                fontSize: 18, letterSpacing: 2, textAlign: "center",
-                borderWidth: 1, borderColor: "rgba(167,139,250,0.3)",
-                marginBottom: 16,
-              }}
-            />
-            {activateResult && (
-              <View style={{
-                backgroundColor: activateResult.success ? "rgba(16,185,129,0.15)" : "rgba(239,68,68,0.15)",
-                borderRadius: 12, padding: 12, marginBottom: 16,
-                borderWidth: 1, borderColor: activateResult.success ? "rgba(16,185,129,0.3)" : "rgba(239,68,68,0.3)",
-              }}>
-                <Text style={{ color: activateResult.success ? "#10B981" : "#EF4444", fontWeight: "700", textAlign: "center" }}>
-                  {activateResult.message}
-                </Text>
-              </View>
-            )}
-            <TouchableOpacity
-              onPress={handleActivate}
-              disabled={activateMutation.isPending}
-              style={{
-                backgroundColor: "#A78BFA", borderRadius: 14, padding: 16,
-                alignItems: "center", opacity: activateMutation.isPending ? 0.7 : 1,
-              }}
-            >
-              <Text style={{ color: "#000", fontSize: 15, fontWeight: "900" }}>
-                {activateMutation.isPending ? (ar ? "جاري التفعيل..." : "Activating...") : (ar ? "تفعيل المفتاح" : "Activate Key")}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        <div className="flex gap-4 mb-8">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="بحث عن مفتاح..."
+            className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+          />
 
-        {/* ── تبويب توليد ──────────────────────────────────────────────── */}
-        {activeTab === "generate" && (
-          <View style={{ gap: 16 }}>
-            <View style={{ backgroundColor: "rgba(255,255,255,0.04)", borderRadius: 20, padding: 20, borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" }}>
-              <Text style={{ color: "#F3F4F6", fontSize: 18, fontWeight: "800", marginBottom: 16 }}>
-                {ar ? "⚙️ توليد مفتاح جديد" : "⚙️ Generate New Key"}
-              </Text>
+          <select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+            className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+          >
+            <option value="all">كل الحالات</option>
+            <option value="active">نشط</option>
+            <option value="inactive">غير نشط</option>
+            <option value="expired">منتهي</option>
+            <option value="revoked">ملغي</option>
+          </select>
+        </div>
 
-              {/* اختيار الخطة */}
-              <Text style={{ color: "#9CA3AF", fontSize: 12, marginBottom: 8 }}>{ar ? "الخطة" : "Plan"}</Text>
-              <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-                {(["free", "pro", "premium"] as Plan[]).map((p) => {
-                  const pc = PLAN_COLORS[p];
-                  return (
-                    <TouchableOpacity
-                      key={p}
-                      onPress={() => setSelectedPlan(p)}
-                      style={{
-                        flex: 1, paddingVertical: 10, borderRadius: 12, alignItems: "center",
-                        backgroundColor: selectedPlan === p ? pc.bg : "rgba(0,0,0,0.3)",
-                        borderWidth: 1.5, borderColor: selectedPlan === p ? pc.color : "rgba(255,255,255,0.1)",
-                      }}
+        {loading ? (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500" />
+          </div>
+        ) : filteredKeys.length === 0 ? (
+          <div className="text-center py-12">
+            <KeyIcon className="w-16 h-16 mx-auto text-gray-600 mb-4" />
+            <h3 className="text-xl font-bold mb-2">لا توجد مفاتيح</h3>
+            <p className="text-gray-400">
+              {isAdmin
+                ? "قم بتوليد مفتاح جديد للبدء"
+                : "ليس لديك أي مفاتيح ترخيص"}
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredKeys.map((key) => (
+              <div
+                key={key.id}
+                className="bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-bold ${getTypeColor(
+                          key.type,
+                        )}`}
+                      >
+                        {key.type}
+                      </span>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs ${getStatusColor(
+                          key.status,
+                        )}`}
+                      >
+                        {key.status}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <code className="text-2xl font-mono bg-gray-900 px-4 py-2 rounded-lg">
+                        {key.key}
+                      </code>
+                      <button
+                        onClick={() => copyToClipboard(key.key)}
+                        className="p-2 hover:bg-gray-700 rounded-lg transition"
+                      >
+                        <ClipboardDocumentIcon className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => generateQR(key.key)}
+                        className="p-2 hover:bg-gray-700 rounded-lg transition"
+                      >
+                        <EyeIcon className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {isAdmin && (
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => revokeKey(key.id)}
+                        className="p-2 bg-yellow-600/20 text-yellow-400 rounded-lg hover:bg-yellow-600/30 transition"
+                      >
+                        إلغاء
+                      </button>
+                      <button
+                        onClick={() => removeKey(key.id)}
+                        className="p-2 bg-red-600/20 text-red-400 rounded-lg hover:bg-red-600/30 transition"
+                      >
+                        <TrashIcon className="w-5 h-5" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                  <div>
+                    <p className="text-sm text-gray-400 mb-1">المنتج</p>
+                    <p className="font-bold">{key.productName}</p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm text-gray-400 mb-1">تاريخ الإنشاء</p>
+                    <p>{new Date(key.createdAt).toLocaleDateString("ar-EG")}</p>
+                  </div>
+
+                  {key.expiresAt && (
+                    <div>
+                      <p className="text-sm text-gray-400 mb-1">ينتهي في</p>
+                      <p
+                        className={
+                          new Date(key.expiresAt) < new Date()
+                            ? "text-red-400"
+                            : ""
+                        }
+                      >
+                        {new Date(key.expiresAt).toLocaleDateString("ar-EG")}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {key.activatedDevices.length > 0 && (
+                  <div className="mt-6">
+                    <p className="text-sm text-gray-400 mb-2">
+                      الأجهزة المفعلة ({key.activatedDevices.length}/
+                      {key.maxDevices})
+                    </p>
+                    <div className="space-y-2">
+                      {key.activatedDevices.map((device) => (
+                        <div
+                          key={device.id}
+                          className="flex items-center gap-3 text-sm bg-gray-700/50 p-2 rounded-lg"
+                        >
+                          <span className="text-xl">
+                            {device.platform === "windows"
+                              ? "🪟"
+                              : device.platform === "mac"
+                                ? "🍎"
+                                : "📱"}
+                          </span>
+                          <span className="flex-1">{device.name}</span>
+                          <span className="text-gray-400">
+                            {new Date(device.lastSeen).toLocaleDateString(
+                              "ar-EG",
+                            )}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {key.features.map((feature, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 bg-gray-700 rounded-full text-xs flex items-center gap-1"
                     >
-                      <Text style={{ fontSize: 16 }}>{pc.icon}</Text>
-                      <Text style={{ color: selectedPlan === p ? pc.color : "#6B7280", fontSize: 10, fontWeight: "800", marginTop: 2 }}>{pc.label}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
+                      <CheckCircleIcon className="w-3 h-3 text-green-400" />
+                      {feature}
+                    </span>
+                  ))}
+                </div>
 
-              {/* عدد الأجهزة */}
-              <Text style={{ color: "#9CA3AF", fontSize: 12, marginBottom: 8 }}>
-                {ar ? `عدد الأجهزة: ${selectedDevices}` : `Devices: ${selectedDevices}`}
-              </Text>
-              <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-                {[1, 2, 3, 5, 10].map((n) => (
-                  <TouchableOpacity
-                    key={n}
-                    onPress={() => setSelectedDevices(n)}
-                    style={{
-                      flex: 1, paddingVertical: 8, borderRadius: 10, alignItems: "center",
-                      backgroundColor: selectedDevices === n ? "#A78BFA" : "rgba(0,0,0,0.3)",
-                      borderWidth: 1, borderColor: selectedDevices === n ? "#A78BFA" : "rgba(255,255,255,0.1)",
-                    }}
-                  >
-                    <Text style={{ color: selectedDevices === n ? "#000" : "#9CA3AF", fontWeight: "800", fontSize: 13 }}>{n}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
+                {key.notes && (
+                  <p className="mt-4 text-sm text-gray-400 bg-gray-700/30 p-3 rounded-lg">
+                    {key.notes}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
-              {/* ملاحظات */}
-              <Text style={{ color: "#9CA3AF", fontSize: 12, marginBottom: 8 }}>{ar ? "ملاحظات (اختياري)" : "Notes (optional)"}</Text>
-              <TextInput
-                value={notes}
-                onChangeText={setNotes}
-                placeholder={ar ? "مثال: للعميل الشركة X..." : "e.g. For enterprise client X..."}
-                placeholderTextColor="#4B5563"
-                multiline
-                style={{
-                  backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 12, padding: 14,
-                  color: "#E5E7EB", fontSize: 13, minHeight: 70, textAlignVertical: "top",
-                  borderWidth: 1, borderColor: "rgba(255,255,255,0.1)", marginBottom: 16,
-                }}
+      {showGenerateForm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-gray-800 rounded-2xl max-w-lg w-full p-6">
+            <h3 className="text-xl font-bold mb-6">توليد مفتاح ترخيص جديد</h3>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">
+                  المنتج
+                </label>
+                <select
+                  value={newKey.productId}
+                  onChange={(e) => {
+                    const product = products.find(
+                      (p) => p.id === e.target.value,
+                    );
+                    setNewKey({
+                      ...newKey,
+                      productId: e.target.value,
+                      productName: product?.name || "",
+                    });
+                  }}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+                >
+                  {products.map((product) => (
+                    <option key={product.id} value={product.id}>
+                      {product.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">
+                  نوع الترخيص
+                </label>
+                <select
+                  value={newKey.type}
+                  onChange={(e) =>
+                    setNewKey({
+                      ...newKey,
+                      type: e.target.value as LicenseKey["type"],
+                    })
+                  }
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+                >
+                  <option value="trial">تجريبي - 14 يوم</option>
+                  <option value="basic">أساسي - جهاز واحد</option>
+                  <option value="pro">احترافي - 3 أجهزة</option>
+                  <option value="enterprise">مؤسسات - 10 أجهزة</option>
+                  <option value="lifetime">مدى الحياة - 5 أجهزة</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">
+                  عدد الأجهزة المسموحة
+                </label>
+                <input
+                  type="number"
+                  value={newKey.maxDevices}
+                  onChange={(e) =>
+                    setNewKey({
+                      ...newKey,
+                      maxDevices: parseInt(e.target.value, 10),
+                    })
+                  }
+                  min="1"
+                  max="20"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">
+                  مدة الصلاحية (أيام)
+                </label>
+                <input
+                  type="number"
+                  value={newKey.expiresIn}
+                  onChange={(e) =>
+                    setNewKey({
+                      ...newKey,
+                      expiresIn: parseInt(e.target.value, 10),
+                    })
+                  }
+                  min="1"
+                  max="3650"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-400 mb-2">
+                  ملاحظات
+                </label>
+                <textarea
+                  value={newKey.notes}
+                  onChange={(e) =>
+                    setNewKey({ ...newKey, notes: e.target.value })
+                  }
+                  rows={3}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
+                  placeholder="أي ملاحظات إضافية..."
+                />
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={() => setShowGenerateForm(false)}
+                  className="flex-1 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"
+                >
+                  إلغاء
+                </button>
+                <button
+                  onClick={generateKey}
+                  className="flex-1 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+                >
+                  توليد المفتاح
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showVerifyForm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-gray-800 rounded-2xl max-w-md w-full p-6">
+            <h3 className="text-xl font-bold mb-6">التحقق من مفتاح</h3>
+
+            <div className="space-y-4">
+              <input
+                type="text"
+                id="verifyKey"
+                placeholder="أدخل المفتاح"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 font-mono focus:outline-none focus:border-purple-500"
               />
 
-              <TouchableOpacity
-                onPress={handleGenerate}
-                disabled={generateMutation.isPending}
-                style={{
-                  backgroundColor: PLAN_COLORS[selectedPlan].color, borderRadius: 14,
-                  padding: 16, alignItems: "center", opacity: generateMutation.isPending ? 0.7 : 1,
-                }}
-              >
-                <Text style={{ color: "#000", fontSize: 15, fontWeight: "900" }}>
-                  {generateMutation.isPending ? (ar ? "جاري التوليد..." : "Generating...") : (ar ? "⚡ توليد مفتاح" : "⚡ Generate Key")}
-                </Text>
-              </TouchableOpacity>
-            </View>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowVerifyForm(false)}
+                  className="flex-1 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"
+                >
+                  إلغاء
+                </button>
+                <button
+                  onClick={() => {
+                    const input = document.getElementById(
+                      "verifyKey",
+                    ) as HTMLInputElement;
+                    verifyKey(input.value);
+                  }}
+                  className="flex-1 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+                >
+                  تحقق
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
-            {/* المفتاح المولّد */}
-            {generatedKey && (
-              <View style={{ backgroundColor: "rgba(16,185,129,0.1)", borderRadius: 20, padding: 20, borderWidth: 1, borderColor: "rgba(16,185,129,0.3)" }}>
-                <Text style={{ color: "#10B981", fontWeight: "800", marginBottom: 10, textAlign: "center" }}>
-                  {ar ? "✅ تم توليد المفتاح!" : "✅ Key Generated!"}
-                </Text>
-                <View style={{ backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 12, padding: 14, marginBottom: 14 }}>
-                  <Text style={{ fontFamily: Platform.OS === "ios" ? "Menlo" : "monospace", fontSize: 16, color: "#10B981", letterSpacing: 2, textAlign: "center", fontWeight: "800" }}>
-                    {generatedKey}
-                  </Text>
-                </View>
-                <View style={{ flexDirection: "row", gap: 8 }}>
-                  <TouchableOpacity onPress={() => handleCopy(generatedKey)} style={{ flex: 1, backgroundColor: "rgba(167,139,250,0.2)", borderRadius: 12, padding: 12, alignItems: "center" }}>
-                    <Text style={{ color: "#A78BFA", fontWeight: "700" }}>{copied ? (ar ? "✅ تم النسخ" : "✅ Copied!") : (ar ? "نسخ" : "Copy")}</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => handleShare(generatedKey)} style={{ flex: 1, backgroundColor: "rgba(16,185,129,0.2)", borderRadius: 12, padding: 12, alignItems: "center" }}>
-                    <Text style={{ color: "#10B981", fontWeight: "700" }}>{ar ? "مشاركة" : "Share"}</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-          </View>
-        )}
-      </ScrollView>
-    </ScreenContainer>
+      {showQR && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-gray-800 rounded-2xl max-w-sm w-full p-6 text-center">
+            <h3 className="text-xl font-bold mb-4">QR Code</h3>
+
+            <img src={qrCode} alt="QR Code" className="w-full mb-4" />
+
+            <button
+              onClick={() => setShowQR(false)}
+              className="w-full py-3 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+            >
+              إغلاق
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
