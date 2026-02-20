@@ -13,13 +13,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Fix Expo & Peer Dependencies
+          name: Install Node Modules
           command: |
             npm install expo-font@^14.0.4 --legacy-peer-deps
             npm install expo-screen-capture@0.10.1 --legacy-peer-deps
-      - run:
-          name: Install Node Modules
-          command: npm install --legacy-peer-deps
+            npm install --legacy-peer-deps
 
   run-tests:
     executor: node-executor
