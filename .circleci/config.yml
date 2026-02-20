@@ -5,7 +5,8 @@ executors:
     docker:
       - image: cimg/node:20.6-browsers # Node + build tools
   android-executor:
-    machine: true # Android SDK + Gradle
+    machine:
+      image: android:2025.10.1
 
 jobs:
   install-dependencies:
@@ -14,7 +15,9 @@ jobs:
       - checkout
       - run:
           name: Install Node Modules
-          command: npm install
+          command: |
+            sudo apt-get update && sudo apt-get install -y build-essential python3 
+            npm install
 
   run-tests:
     executor: node-executor
