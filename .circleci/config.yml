@@ -3,12 +3,11 @@ version: 2.1
 executors:
   node-executor:
     docker:
-      - image: cimg/node:20.6
+      - image: cimg/node:20.6-browsers # Node + build tools
   android-executor:
-    machine: true
+    machine: true # Android SDK + Gradle
 
 jobs:
-  # 1️⃣ تثبيت dependencies
   install-dependencies:
     executor: node-executor
     steps:
@@ -17,16 +16,14 @@ jobs:
           name: Install Node Modules
           command: npm install
 
-  # 2️⃣ تشغيل الاختبارات
   run-tests:
     executor: node-executor
     steps:
       - checkout
       - run:
-          name: Run Unit & Integration Tests
+          name: Run Tests
           command: npm test
 
-  # 3️⃣ Build Backend
   build-backend:
     executor: node-executor
     steps:
@@ -35,7 +32,6 @@ jobs:
           name: Build Backend
           command: npm run build
 
-  # 4️⃣ Build Android
   build-android:
     executor: android-executor
     steps:
@@ -44,7 +40,6 @@ jobs:
           name: Build Android APK
           command: ./gradlew assembleDebug
 
-  # 5️⃣ Run AI Prompt Block على MCP
   run-mcp-prompt:
     executor: node-executor
     steps:
