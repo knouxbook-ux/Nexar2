@@ -1,11 +1,12 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@5.0.0
+
 executors:
   node-executor:
     docker:
       - image: cimg/node:20.6-browsers
-  android-executor:
-    machine: true
 
 jobs:
   install-dependencies:
@@ -15,11 +16,18 @@ jobs:
       - run:
           name: Install Node Modules
           command: npm ci --legacy-peer-deps
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - package-lock.json
 
   run-tests:
     executor: node-executor
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Run Tests
           command: npm test
@@ -28,36 +36,14 @@ jobs:
     executor: node-executor
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Build Backend
           command: npm run build
 
-  build-android:
-    executor: android-executor
-    steps:
-      - checkout
-      - run:
-          name: Build Android APK
-          command: ./gradlew assembleDebug
-
-  run-mcp-prompt:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Run Knoux AI Prompt
-          command: |
-            curl -X POST https://mcp.coderabbit.ai/run \
-            -H "Authorization: Bearer $MCP_API_KEY" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "prompt": "Paste here the full Knoux Nexar Prompt Block",
-              "project_dir": "D:/KNOUX-NEXAR-PRO",
-              "execution_mode": "full"
-            }'
-
 workflows:
-  one-click-nexar-build:
+  build-and-test:
     jobs:
       - install-dependencies
       - run-tests:
@@ -66,10 +52,3 @@ workflows:
       - build-backend:
           requires:
             - run-tests
-      - build-android:
-          requires:
-            - run-tests
-      - run-mcp-prompt:
-          requires:
-            - build-backend
-            - build-android
