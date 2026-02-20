@@ -3,10 +3,9 @@ version: 2.1
 executors:
   node-executor:
     docker:
-      - image: cimg/node:20.6-browsers # Node + build tools
+      - image: cimg/node:20.6-browsers
   android-executor:
-    machine:
-      image: android:2025.10.1
+    machine: true
 
 jobs:
   install-dependencies:
@@ -14,10 +13,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Node Modules
+          name: Fix Expo & Peer Dependencies
           command: |
-            sudo apt-get update && sudo apt-get install -y build-essential python3 
-            npm install --legacy-peer-deps
+            npm install expo-font@^14.0.4 --legacy-peer-deps
+            npm install expo-screen-capture@0.10.1 --legacy-peer-deps
+      - run:
+          name: Install Node Modules
+          command: npm install --legacy-peer-deps
 
   run-tests:
     executor: node-executor
